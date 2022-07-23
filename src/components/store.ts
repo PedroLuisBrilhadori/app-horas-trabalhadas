@@ -1,7 +1,7 @@
 import { writable, type Writable } from "svelte/store";
 
 export interface Registro {
-  dia: String;
+  dia: string;
   inicio: Date;
   termino: Date;
   horasTrabalhadas: Horario;
