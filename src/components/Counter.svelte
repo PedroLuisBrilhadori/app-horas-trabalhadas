@@ -28,16 +28,16 @@
 
 </script>
 
-{#if !trabalhando}
-<button class="" on:click={mudarStatusDeTrabalho}>
-  você não está trabalhando
-</button>
-
-{:else}
-
+{#if trabalhando}
 <!-- svelte-ignore a11y-missing-attribute -->
 <a class="inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring" on:click={mudarStatusDeTrabalho}>
   você está trabalhando
 </a>
+
+{:else}
+
+<button class="" on:click={mudarStatusDeTrabalho}>
+  você não está trabalhando
+</button>
 
 {/if}

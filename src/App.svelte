@@ -1,6 +1,6 @@
 <script lang="ts">
   import Card from './components/card.svelte';
-import Counter from './components/Counter.svelte'
+  import Counter from './components/Counter.svelte'
   import { horarioDeUmaData, horarioParaString } from './components/functions';
   import {Registros} from './components/store';
 
