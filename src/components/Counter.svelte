@@ -1,18 +1,20 @@
 <script lang="ts">
-  import { Registros } from './store';
-
+  import { Registros, StatusTrabalho } from './store';
   import { horasTrabalhadas } from './functions';
+  import { get } from 'svelte/store';
 
-  let trabalhando: boolean = false;
-  let inicio: Date;
-  let dia: string;
+  $: trabalhando = $StatusTrabalho.trabalhando;
 
   function mudarStatusDeTrabalho() {
-    trabalhando = !trabalhando;
-    
-    if(trabalhando){
-      inicio = new Date()
-      dia = `${inicio.getDate()}/${inicio.getMonth() + 1}/${inicio.getFullYear()}`;
+    const status = get(StatusTrabalho);
+
+    if (!status.trabalhando) {
+      const inicio = new Date();
+      StatusTrabalho.set({
+        trabalhando: true,
+        inicio,
+        dia: `${inicio.getDate()}/${inicio.getMonth() + 1}/${inicio.getFullYear()}`,
+      });
       return;
     }
 
@@ -22,12 +24,14 @@
       ...$Registros,
       {
         id: crypto.randomUUID(),
-        dia,
-        inicio,
+        dia: status.dia!,
+        inicio: status.inicio!,
         termino,
-        horasTrabalhadas: horasTrabalhadas(inicio, termino),
+        horasTrabalhadas: horasTrabalhadas(status.inicio!, termino),
       },
     ];
+
+    StatusTrabalho.set({ trabalhando: false, inicio: null, dia: null });
   }
 
 </script>

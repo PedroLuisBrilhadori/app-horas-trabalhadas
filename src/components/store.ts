@@ -15,3 +15,15 @@ export interface Horario {
 }
 
 export const Registros: Writable<Registro[]> = writable([]);
+
+export interface StatusTrabalho {
+  trabalhando: boolean;
+  inicio: Date | null;
+  dia: string | null;
+}
+
+export const StatusTrabalho: Writable<StatusTrabalho> = writable({
+  trabalhando: false,
+  inicio: null,
+  dia: null,
+});
