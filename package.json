@@ -20,5 +20,9 @@
     "tslib": "^2.4.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "marked": "^15.0.12",
+    "marked-highlight": "^2.2.1"
   }
 }
