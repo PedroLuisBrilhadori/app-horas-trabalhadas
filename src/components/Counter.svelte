@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Registros, StatusTrabalho } from './store';
+  import { Registros, StatusTrabalho, Notas } from './store';
   import { horasTrabalhadas } from './functions';
   import { get } from 'svelte/store';
 
@@ -14,24 +14,28 @@
         trabalhando: true,
         inicio,
         dia: `${inicio.getDate()}/${inicio.getMonth() + 1}/${inicio.getFullYear()}`,
+        registro_id: crypto.randomUUID(),
       });
       return;
     }
 
     const termino = new Date();
 
+    const notas = get(Notas).filter((n) => n.registro_id === status.registro_id);
+
     $Registros = [
       ...$Registros,
       {
-        id: crypto.randomUUID(),
+        id: status.registro_id!,
         dia: status.dia!,
         inicio: status.inicio!,
         termino,
         horasTrabalhadas: horasTrabalhadas(status.inicio!, termino),
+        notas,
       },
     ];
 
-    StatusTrabalho.set({ trabalhando: false, inicio: null, dia: null });
+    StatusTrabalho.set({ trabalhando: false, inicio: null, dia: null, registro_id: null });
   }
 
 </script>

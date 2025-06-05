@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import Counter from './Counter.svelte';
 
   export let view: 'home' | 'registros';
 
@@ -10,7 +11,7 @@
   }
 </script>
 
-<nav class="fixed top-0 left-0 w-full flex gap-4 p-2 bg-gray-800 text-white">
+<nav class="fixed top-0 left-0 w-full flex gap-4 p-2 bg-gray-800 text-white items-center">
   <button
     class="px-3 py-1 border rounded"
     class:bg-blue-500={view === 'home'}
@@ -28,4 +29,8 @@
   >
     Registros
   </button>
+
+  <div class="ml-auto">
+    <Counter />
+  </div>
 </nav>

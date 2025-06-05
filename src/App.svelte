@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Counter from './components/Counter.svelte';
+  import Notas from './components/Notas.svelte';
   import RegistrosPage from './components/RegistrosPage.svelte';
   import Navbar from './components/Navbar.svelte';
   import { StatusTrabalho } from './components/store';
@@ -42,7 +42,11 @@
 
   {#if view === 'home'}
     <div class="card">
-      <Counter />
+      {#if $StatusTrabalho.trabalhando}
+        <Notas />
+      {:else}
+        <p class="text-gray-500">Inicie um registro de trabalho para adicionar notas.</p>
+      {/if}
     </div>
   {:else if view === 'registros'}
     <RegistrosPage />
