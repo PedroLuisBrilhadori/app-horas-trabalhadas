@@ -8,11 +8,6 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
-  "dependencies": {
-    "highlight.js": "^11.8.0",
-    "marked": "^9.1.1",
-    "marked-highlight": "^2.1.1"
-  },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "@tsconfig/svelte": "^3.0.0",
