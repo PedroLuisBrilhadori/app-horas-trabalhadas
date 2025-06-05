@@ -1,20 +1,26 @@
 <script lang="ts">
   import { StatusTrabalho, Notas } from './store';
   import { get } from 'svelte/store';
+  import { marked } from 'marked';
+  import { markedHighlight } from 'marked-highlight';
+  import hljs from 'highlight.js';
+
+  marked.use(
+    markedHighlight({
+      highlight(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+    })
+  );
 
   let conteudo = '';
   let mostrar = false;
 
   function markdownToHtml(text: string): string {
-    let html = text;
-    html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-    html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-    html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-    html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
-    html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
-    html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
-    html = html.replace(/\n/g, '<br>');
-    return html;
+    return marked.parse(text);
   }
 
   function salvar() {
@@ -34,7 +40,19 @@
 </script>
 
 <div class="space-y-2">
-  <textarea bind:value={conteudo} class="w-full border p-2 rounded"></textarea>
+  <div class="flex flex-col md:flex-row gap-4">
+    <textarea
+      bind:value={conteudo}
+      class="flex-1 h-64 border p-2 rounded font-mono"
+    ></textarea>
+
+    {#if mostrar}
+      <div class="flex-1 h-64 border p-2 rounded overflow-auto text-left">
+        {@html markdownToHtml(conteudo)}
+      </div>
+    {/if}
+  </div>
+
   <div class="flex gap-2">
     <button class="px-3 py-1 border rounded" on:click={() => (mostrar = !mostrar)}>
       {mostrar ? 'Esconder Preview' : 'Preview'}
@@ -43,9 +61,4 @@
       Salvar Nota
     </button>
   </div>
-  {#if mostrar}
-    <div class="p-2 border rounded text-left">
-      {@html markdownToHtml(conteudo)}
-    </div>
-  {/if}
 </div>

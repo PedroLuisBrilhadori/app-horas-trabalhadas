@@ -75,6 +75,13 @@ button:focus-visible {
   }
 }
 
+.hljs {
+  background: #1e1e1e;
+  color: #dcdcdc;
+  padding: 0.5em;
+  overflow-x: auto;
+}
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
