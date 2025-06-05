@@ -18,12 +18,16 @@
 
     const termino = new Date();
 
-    $Registros = [...$Registros, {
-      dia,
-      inicio,
-      termino,
-      horasTrabalhadas: horasTrabalhadas(inicio, termino),
-    }];
+    $Registros = [
+      ...$Registros,
+      {
+        id: Date.now(),
+        dia,
+        inicio,
+        termino,
+        horasTrabalhadas: horasTrabalhadas(inicio, termino),
+      },
+    ];
   }
 
 </script>
