@@ -1,6 +1,7 @@
 import { writable, type Writable } from "svelte/store";
 
 export interface Registro {
+  id: string;
   dia: string;
   inicio: Date;
   termino: Date;
