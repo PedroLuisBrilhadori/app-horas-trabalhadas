@@ -21,7 +21,7 @@
     $Registros = [
       ...$Registros,
       {
-        id: Date.now(),
+        id: crypto.randomUUID(),
         dia,
         inicio,
         termino,
