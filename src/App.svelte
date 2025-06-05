@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Counter from './components/Counter.svelte';
+  import Notas from './components/Notas.svelte';
   import RegistrosPage from './components/RegistrosPage.svelte';
   import Navbar from './components/Navbar.svelte';
   import { StatusTrabalho } from './components/store';
@@ -41,9 +41,11 @@
 <main class="p-4 pt-16 space-y-4">
 
   {#if view === 'home'}
-    <div class="card">
-      <Counter />
-    </div>
+    {#if $StatusTrabalho.trabalhando}
+      <div class="card">
+        <Notas />
+      </div>
+    {/if}
   {:else if view === 'registros'}
     <RegistrosPage />
   {/if}
