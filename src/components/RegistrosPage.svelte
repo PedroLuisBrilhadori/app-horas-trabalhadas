@@ -18,7 +18,7 @@
     class="border p-1 rounded"
   />
 
-  <table class="min-w-full table-auto border-collapse border rounded-lg overflow-hidden">
+  <table class="min-w-full table-auto border-collapse border rounded-lg overflow-hidden text-black">
     <thead class="bg-gray-100">
       <tr>
         <th class="px-3 py-2 border">ID</th>
